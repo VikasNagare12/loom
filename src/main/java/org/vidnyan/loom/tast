@@ -1,0 +1,64 @@
+package com.example.kafka;
+
+import io.github.resilience4j.bulkhead.*;
+import io.github.resilience4j.retry.*;
+import jakarta.annotation.PostConstruct;
+import org.apache.kafka.clients.producer.RecordMetadata;
+import org.slf4j.*;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
+import org.springframework.stereotype.Service;
+
+import java.time.Duration;
+import java.util.concurrent.CompletableFuture;
+
+@Service
+public class KafkaProducerService {
+
+    private static final Logger log = LoggerFactory.getLogger(KafkaProducerService.class);
+
+    private final KafkaTemplate<String, String> kafkaTemplate;
+
+    private Bulkhead bulkhead;
+    private Retry retry;
+
+    public KafkaProducerService(KafkaTemplate<String, String> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
+
+    @PostConstruct
+    public void init() {
+        // Initialize Bulkhead to limit concurrent Kafka sends
+        this.bulkhead = Bulkhead.of("kafka-bulkhead", BulkheadConfig.custom()
+                .maxConcurrentCalls(100) // Limit to 100 concurrent calls
+                .maxWaitDuration(Duration.ofSeconds(10)) // Max wait for acquiring permits
+                .build());
+
+        // Initialize Retry to retry failed sends up to 5 times
+        this.retry = Retry.of("kafka-retry", RetryConfig.custom()
+                .maxAttempts(5) // Retry 5 times
+                .waitDuration(Duration.ofMillis(200)) // 200ms delay between retries
+                .intervalFunction(IntervalFunction.ofExponentialBackoff(200, 2.0)) // Exponential backoff
+                .retryExceptions(Exception.class) // Retry on any exception
+                .build());
+    }
+
+    public CompletableFuture<Void> sendMessage(String topic, String key, String value) {
+        // Wrap the send operation with Bulkhead and Retry
+        return Bulkhead.decorateCompletionStage(bulkhead,
+            () -> Retry.decorateCompletionStage(retry,
+                () -> kafkaTemplate.send(topic, key, value).completable() // Kafka send as CompletableFuture
+            )
+        ).thenAccept(this::handleSuccess)  // Handle success after send
+         .exceptionally(ex -> {  // Handle failure after retries
+             log.error("Kafka send failed after retries: {}", ex.getMessage(), ex);
+             return null;
+         });
+    }
+
+    private void handleSuccess(SendResult<String, String> result) {
+        RecordMetadata metadata = result.getRecordMetadata();
+        log.info("Message sent to Kafka: topic={}, partition={}, offset={}",
+                 metadata.topic(), metadata.partition(), metadata.offset());
+    }
+}
