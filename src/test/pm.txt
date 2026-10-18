@@ -1,1 +1,68 @@
-this is the text file
+MULTI-AGENT ORCHESTRATION — ELITE PERFORMANCE & PROMOTION REVIEW
+
+Act as the Principal Orchestrator, Executive Performance Strategist, and final Promotion Committee Evaluator.
+
+Do not perform the entire analysis as a single agent. Use Claude Code’s available subagent capabilities to delegate independent, specialized investigations to multiple agents. Each agent must analyze the existing performance-review document and relevant evidence from its own perspective, then return structured findings to the main agent.
+
+1. Spawn specialist subagents
+
+Use these analytical personas as separate agents:
+
+1. Peter Drucker Agent — Organizational Impact: Identify business outcomes, organizational effectiveness, reusable capabilities, and impact beyond assigned responsibilities.
+2. Andy Grove Agent — Execution & Results: Analyze delivery, measurable productivity, ownership, operational performance, and execution excellence.
+3. W. Edwards Deming Agent — Quality & Reliability: Analyze engineering quality, automated testing, production stability, root-cause resolution, risk controls, and continuous improvement.
+4. Jeff Bezos Agent — Customer & Business Value: Identify customer impact, ownership, long-term value, operational savings, and high-leverage initiatives.
+5. Kim Scott Agent — Leadership & Values: Analyze collaboration, integrity, influence, knowledge sharing, developing others, and demonstrated leadership behaviours.
+6. Technical Evidence Auditor: Independently validate metrics, calculations, dates, stakeholder quotations, adoption claims, production outcomes, and consistency across the review and available source evidence.
+7. Promotion Committee Agent: Evaluate the evidence against official WHAT/HOW rating definitions and next-level engineering competencies. Identify the strongest promotion arguments, weaknesses, and likely committee objections.
+
+If subagent concurrency is supported, run independent analyses in parallel. Give each agent a clearly scoped task and access only to the relevant authorized evidence.
+
+2. Require structured findings from every agent
+
+Each agent must return:
+
+* The five strongest findings within its scope.
+* Supporting evidence and source references.
+* Business or organizational significance.
+* Relevant WHAT, HOW, and promotion competencies.
+* Verified metrics versus estimates or unverified claims.
+* Missing evidence, contradictions, duplication, and risks.
+* Specific recommendations for strengthening the review.
+
+Agents must not invent facts, modify the original review, or independently produce competing final versions.
+
+3. Main-agent synthesis and challenge
+
+After collecting the reports, the main agent must:
+
+1. Cross-check findings across agents and resolve contradictions.
+2. Eliminate duplicated achievements and unsupported claims.
+3. Prioritize evidence by demonstrated impact, organizational reach, leadership, and next-level relevance.
+4. Distinguish individual contributions from team outcomes.
+5. Select the strongest evidence for outstanding WHAT, outstanding HOW, and promotion readiness.
+6. Challenge its own conclusions as a skeptical senior promotion committee.
+7. Ask for confirmation wherever critical facts or evidence remain unresolved.
+
+Do not mechanically combine every agent’s recommendations. Exercise independent judgment and retain only the strongest, relevant, non-duplicative findings.
+
+4. Final deliverable ownership
+
+The MAIN AGENT alone owns the final deliverables:
+
+* One cohesive, executive-ready performance review.
+* Separate, compelling WHAT and HOW narratives.
+* A defensible promotion-readiness case mapped to official criteria.
+* An evidence matrix supporting the major claims.
+* A concise manager-discussion brief.
+* A prioritized list of unresolved evidence gaps.
+
+The final review must read as one coherent narrative, not as a collection of AI-generated reports.
+
+5. Execution and safety rules
+
+First inspect the existing document, available source evidence, official competency criteria, and the available subagent tools. Delegate only work that can be performed with the actual capabilities available; do not pretend agents ran if they did not.
+
+Preserve the original file. Write the consolidated result to a separate proposed file. Do not submit the review or communicate with anyone on my behalf.
+
+Optimize for the strongest evidence-based case for outstanding WHAT, outstanding HOW, and promotion to the next engineering level. Accuracy, independent verification, and demonstrated impact take precedence over persuasive wording.
