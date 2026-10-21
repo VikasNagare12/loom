@@ -1,1 +1,96 @@
-this is loom project
+# VS Code — IntelliJ-Style Theme Settings
+
+Make VS Code look and feel like IntelliJ IDEA: JetBrains Mono font (size 14), dark theme with grey text, and IntelliJ Darcula syntax colors for all languages.
+
+## How to Apply on Any Laptop
+
+1. Open VS Code → `Cmd+Shift+P` (Mac) / `Ctrl+Shift+P` (Windows) → **"Preferences: Open User Settings (JSON)"**
+2. Merge the JSON below into that file
+3. Install the **JetBrains Mono** font (see below)
+4. Reload the window: `Cmd+Shift+P` / `Ctrl+Shift+P` → **"Reload Window"**
+
+## 1. Install JetBrains Mono Font
+
+- **Mac**: `brew install --cask font-jetbrains-mono`
+- **Windows**: download from [jetbrains.com/mono](https://www.jetbrains.com/lp/mono/) and install
+- **Linux**: `sudo apt install fonts-jetbrains-mono` (or your distro's equivalent)
+
+## 2. Settings JSON
+
+```json
+{
+    "editor.fontSize": 14,
+    "editor.fontFamily": "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
+    "editor.foreground": "#C8C8C8",
+    "workbench.colorTheme": "Dark Modern",
+    "workbench.colorCustomizations": {
+        "[Dark Modern]": {
+            "editor.background": "#262626",
+            "editor.lineHighlightBackground": "#2F2F2F",
+            "sideBar.background": "#212121",
+            "activityBar.background": "#1E1E1E",
+            "statusBar.background": "#1E1E1E",
+            "statusBar.foreground": "#C8C8C8",
+            "titleBar.activeBackground": "#1E1E1E",
+            "titleBar.activeForeground": "#C8C8C8"
+        }
+    },
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            { "scope": ["comment", "comment.block", "comment.line"], "settings": { "foreground": "#808080" } },
+            { "scope": "string.quoted", "settings": { "foreground": "#6A8759" } },
+            { "scope": "string.regexp", "settings": { "foreground": "#6A8759" } },
+            { "scope": "constant.numeric", "settings": { "foreground": "#6897BB" } },
+            { "scope": "constant.language", "settings": { "foreground": "#CC7832" } },
+            { "scope": "keyword.control", "settings": { "foreground": "#CC7832" } },
+            { "scope": "keyword.operator", "settings": { "foreground": "#CC7832" } },
+            { "scope": "keyword.declaration", "settings": { "foreground": "#CC7832" } },
+            { "scope": "storage.type", "settings": { "foreground": "#CC7832" } },
+            { "scope": "storage.modifier", "settings": { "foreground": "#CC7832" } },
+            { "scope": "entity.name.function", "settings": { "foreground": "#FFC66D" } },
+            { "scope": "entity.name.type", "settings": { "foreground": "#FFC66D" } },
+            { "scope": "entity.name.type.class", "settings": { "foreground": "#FFC66D" } },
+            { "scope": "meta.function-call.generic", "settings": { "foreground": "#FFC66D" } },
+            { "scope": "support.function", "settings": { "foreground": "#A9B7C6" } },
+            { "scope": "support.function.builtin", "settings": { "foreground": "#A9B7C6" } },
+            { "scope": "support.class", "settings": { "foreground": "#A9B7C6" } },
+            { "scope": "support.constant", "settings": { "foreground": "#A9B7C6" } },
+            { "scope": "support.type", "settings": { "foreground": "#A9B7C6" } },
+            { "scope": "variable", "settings": { "foreground": "#A9B7C6" } },
+            { "scope": "variable.parameter", "settings": { "foreground": "#A9B7C6" } },
+            { "scope": "variable.language.special", "settings": { "foreground": "#94558D" } },
+            { "scope": "variable.other.readwrite", "settings": { "foreground": "#A9B7C6" } },
+            { "scope": "punctuation.definition", "settings": { "foreground": "#A9B7C6" } },
+            { "scope": "string.interpolated", "settings": { "foreground": "#CC7832" } },
+            { "scope": "markup.heading.markdown", "settings": { "foreground": "#6A8759" } },
+            { "scope": "markup.heading.setext", "settings": { "foreground": "#6A8759" } },
+            { "scope": "markup.heading.markdown entity.name", "settings": { "foreground": "#6A8759" } },
+            { "scope": "markup.bold.markdown", "settings": { "foreground": "#A9B7C6", "fontStyle": "bold" } },
+            { "scope": "markup.italic.markdown", "settings": { "foreground": "#A9B7C6", "fontStyle": "italic" } },
+            { "scope": "markup.inline.raw.string.markdown", "settings": { "foreground": "#6A8759" } }
+        ]
+    }
+}
+```
+
+## 3. Color Reference
+
+| Element | Color | Example |
+|---------|-------|---------|
+| Keywords (`if`, `def`, `return`, `import`) | Orange `#CC7832` | `if`, `for` |
+| Strings | Green `#6A8759` | `"hello"` |
+| Numbers & constants | Blue `#6897BB` | `123` |
+| `True` / `False` / `None` | Orange `#CC7832` | `True` |
+| Function & class names | Yellow `#FFC66D` | `calculate()` |
+| Comments | Grey `#808080` | `# note` |
+| Variables & builtins | Grey-blue `#A9B7C6` | `value`, `len()` |
+| `self` / `cls` | Purple `#94558D` | `self` |
+| Braces, brackets, punctuation | Grey-blue | `{`, `(`, `=` |
+| Markdown headings | Green `#6A8759` | `## Title` |
+| Markdown bold / italic | Grey-blue `#A9B7C6` | **bold**, *italic* |
+
+## Notes
+
+- The JSON above contains only the IntelliJ theme settings — merge it with any existing settings on the target laptop (do not replace the whole file).
+- These colors apply to all languages: Python, TypeScript, JavaScript, JSON, Markdown, etc.
+- UI panel colors (sidebar, status bar, title bar) are scoped to the **Dark Modern** theme.
